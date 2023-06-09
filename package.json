@@ -12,6 +12,8 @@
     "exceljs": "^4.3.0"
   },
   "dependencies": {
-    "csv-parse": "^5.4.0"
+    "csv-parse": "^5.4.0",
+    "fs": "^0.0.1-security",
+    "tsconfig-paths": "^4.2.0"
   }
 }

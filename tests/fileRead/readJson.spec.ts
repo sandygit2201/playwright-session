@@ -1,7 +1,7 @@
 import { test ,expect} from "@playwright/test";
-import users from '../../testData/users.json';
+import users from '@testData/users.json';
 
-test('read data from CSV',async ({page})=>{
+test('read data from json',async ({page})=>{
   
       await page.goto('/index.php?route=account/login')
       await page.getByPlaceholder('E-Mail Address').fill(users.user1.username)
