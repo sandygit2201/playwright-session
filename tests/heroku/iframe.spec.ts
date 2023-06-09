@@ -9,8 +9,6 @@ test('iframe',async ({page})=>{
 
     await frame1.type("Hello world")
    
-
-
 })
 
 

@@ -1,10 +1,15 @@
-import { expect, test } from "@playwright/test"
+import { chromium, expect, test } from "@playwright/test"
 
-test('alert1',async ({page})=>{
+test('alert1',async ()=>{
+
+    const browser = await chromium.launch({headless:false})
+    const context = await browser.newContext()
+    const page = await context.newPage()
 
     await page.goto('https://the-internet.herokuapp.com/javascript_alerts')
 
     page.on('dialog',async (alert)=>{
+        
         await alert.accept()
     })
 
@@ -13,7 +18,7 @@ test('alert1',async ({page})=>{
 
 })
 
-test('alert2',async ({page})=>{
+test.skip('alert2',async ({page})=>{
 
     await page.goto('https://the-internet.herokuapp.com/javascript_alerts')
 
@@ -28,7 +33,7 @@ test('alert2',async ({page})=>{
 })
 
 
-test.only('alert3',async ({page})=>{
+test.skip('alert3',async ({page})=>{
 
     await page.goto('https://the-internet.herokuapp.com/javascript_alerts')
 

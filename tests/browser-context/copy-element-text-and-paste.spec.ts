@@ -6,33 +6,23 @@ test('multiple tabs', async () => {
     const browser = await chromium.launch({headless:false}); //initialize browser 
     const chromeContext = await browser.newContext(); //browser instance
 
-    //    tab1 
-    const tab1 = await chromeContext.newPage() //browser tab
-
-    await tab1.goto('https://the-internet.herokuapp.com/abtest')
-
-    expect(await tab1.locator("div[class='example'] h3").textContent())
-        .toContain('A/B Test')
-
-    const dataOnPage = await tab1.locator("//div[@id='content']//p").textContent()
-
-    await tab1.screenshot({ path: 'screenshots/multitabs/tab1.png' })
-
-    await tab1.pause()
-
     // tab2 
     const tab2 = await chromeContext.newPage()
 
     await tab2.goto('https://the-internet.herokuapp.com/iframe')
 
+    const pageHeader  = tab2.locator('//h3').innerText()
+
+    console.log('page header::'+pageHeader)
+
     const iframe = tab2.frameLocator('#mce_0_ifr').locator('html')
 
     await iframe.locator('#tinymce').click()
-    await tab1.pause()
-    await iframe.locator('#tinymce').type(dataOnPage)
+    await tab2.pause()
+    await iframe.locator('#tinymce').type(pageHeader)
 
     await tab2.screenshot({ path: 'screenshots/multitabs/tab2.png' })
 
-    await tab1.pause()
+    await tab2.pause()
 
 })

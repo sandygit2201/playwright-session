@@ -13,6 +13,10 @@ export default defineConfig({
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
+
+  // test match 
+  // testMatch:'browser-context/new-tab-from-page.spec*',
+
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
@@ -34,12 +38,13 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-    }
+      use: { ...devices['Desktop Chrome'] ,headless:false},
+    
+    },
 
     // {
     //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'] },
+    //   use: { ...devices['Desktop Firefox'],headless:false },
     // },
 
     // {
